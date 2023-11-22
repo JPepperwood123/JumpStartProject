@@ -1,3 +1,4 @@
+import 'package:bar_graph_project/bar_graph/individual_bar.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 
@@ -35,6 +36,9 @@ class _DelayedRebuilder extends StatefulWidget {
 class _DelayedRebuilderState extends State<_DelayedRebuilder> {
   int selectedIndex = 0;
 
+  List<double> rtpDataSet = [84.4, 2.5, 42.4, 90.1];
+  List<IndividualBar> indivSumm = [IndividualBar(x: 0, y: 84.4), IndividualBar(x: 1, y: 2.5), IndividualBar(x: 2, y: 42.4)];
+
   @override
   void initState() {
     super.initState();
@@ -44,7 +48,7 @@ class _DelayedRebuilderState extends State<_DelayedRebuilder> {
   void _startTimer() {
     Future.delayed(const Duration(seconds: 10), () {
       setState(() {
-        selectedIndex = (selectedIndex + 1) % 4; // Assuming you have 4 items in your summary
+        selectedIndex = (selectedIndex + 1) % indivSumm.length;
       });
       _startTimer(); // Schedule the next rebuild
     });
@@ -57,7 +61,8 @@ class _DelayedRebuilderState extends State<_DelayedRebuilder> {
         return MaterialPageRoute(
           builder: (BuildContext context) {
             return HomePage(
-              summary: [84.40, 2.50, 42.42, 90.10], // Replace with your actual summary
+              summary: rtpDataSet,
+              // summary: indivSumm,
               selectedIndex: selectedIndex,
             );
           },
