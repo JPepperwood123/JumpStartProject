@@ -37,6 +37,19 @@ class MyBarGraph extends StatelessWidget {
       throw UnimplementedError('No Value');
     }
 
+    // Define positions for dotted lines on the y-axis
+    List<LineChartBarData> extraLines = [
+      LineChartBarData(
+        spots: [
+          FlSpot(0, 20),
+        ],
+        isCurved: false,
+        color: Colors.grey,
+        dotData: FlDotData(show: false),
+        belowBarData: BarAreaData(show: false),
+      ),
+    ];
+
     print("pos : ${summary[index]}");
     double arrowPosition = summary[index];
 
