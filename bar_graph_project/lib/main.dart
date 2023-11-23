@@ -36,7 +36,7 @@ class _DelayedRebuilder extends StatefulWidget {
 class _DelayedRebuilderState extends State<_DelayedRebuilder> {
   int selectedIndex = 0;
 
-  List<double> rtpDataSet = [84.4, 2.5, 42.4, 90.1];
+  List<double> rtpDataSet = [84.4, 62.7, 2.5, 42.4, 90.1];
   List<IndividualBar> indivSumm = [IndividualBar(x: 0, y: 84.4), IndividualBar(x: 1, y: 2.5), IndividualBar(x: 2, y: 42.4)];
 
   @override
