@@ -83,6 +83,20 @@ class MyBarGraph extends StatelessWidget {
                 color: Colors.black, // Set the color as needed
               ),
             ),
+            
+            // Vertical lines on the right
+            Positioned(
+                right: 10,
+                top: 10,
+                bottom: 10,
+                child:
+                  Container(
+                    height: 2.0, // Adjust the height as needed
+                    width: 20.0, // Adjust the width as needed
+                    color: Colors.red,
+                  ),
+            ),
+
             Stack(
               children:[
                 Padding(
@@ -169,13 +183,16 @@ class MyBarGraph extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                
+
                 Padding(
                   padding: const EdgeInsets.only(
                     left: 65, 
                     right: 42, 
                     bottom: 75,
                   ),
-                child: 
+                  child: 
                   // Shaded area between 80 and 100
                   Container(
                     height: double.infinity,
@@ -195,28 +212,125 @@ class MyBarGraph extends StatelessWidget {
                     ),
                   ),
                 ),
-                
               ]
-            ),
-            // Vertical lines on the right
-            Positioned(
-              right: 20,
-              top: 20,
-              bottom: 20,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(width: 20, color: Colors.red),
-                  Container(width: 2, color: Colors.blue),
-                  Container(width: 2, color: Colors.green),
-                  Container(width: 2, color: Colors.grey),
-                ],
-              ),
             ),
           ],
         );
       }
     );
+
+    // return LayoutBuilder(
+    //   builder: (context, constraints) {
+    //     return Padding(
+    //       padding: const EdgeInsets.only(left: 20, right: 40),
+    //       child: Row(
+    //         children: [
+    //           Expanded(
+    //             child: Stack(
+    //               children: [
+    //                 BarChart(
+    //                   BarChartData(
+    //                     maxY: 100,
+    //                     minY: 0,
+    //                     titlesData: FlTitlesData(
+    //                       show: true,
+    //                       topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+    //                       bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+    //                       rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+    //                     ),
+    //                     barGroups: myBarData.barData
+    //                         .map(
+    //                           (data) => BarChartGroupData(
+    //                             x: 0,
+    //                             barRods: [
+    //                               BarChartRodData(
+    //                                 toY: data.y,
+    //                                 color: currColor,
+    //                                 width: 25,
+    //                                 borderRadius: BorderRadius.circular(19),
+    //                               ),
+    //                             ],
+    //                             showingTooltipIndicators: [0],
+    //                           ),
+    //                         )
+    //                         .toList(),
+    //                     barTouchData: BarTouchData(
+    //                       touchTooltipData: BarTouchTooltipData(
+    //                         tooltipBgColor: Colors.transparent,
+    //                         getTooltipItem: (group, groupIndex, rod, rodIndex) {
+    //                           return BarTooltipItem(
+    //                             '${summary[index]}%',
+    //                             TextStyle(
+    //                               color: currColor,
+    //                               fontSize: 21,
+    //                               fontFamily: 'Lato',
+    //                               fontWeight: FontWeight.w700,
+    //                             ),
+    //                           );
+    //                         },
+    //                       ),
+    //                     ),
+    //                     gridData: FlGridData(
+    //                       show: true,
+    //                       horizontalInterval: 20.0,
+    //                       getDrawingHorizontalLine: (value) {
+    //                         if (value == 0 || value == 100) {
+    //                           return FlLine(color: Colors.black, strokeWidth: 2.0, dashArray: [5]);
+    //                         } else if (value % 20 == 0) {
+    //                           return FlLine(
+    //                               color: Color.fromRGBO(166, 187, 199, 1), strokeWidth: 0.5, dashArray: [3]);
+    //                         } else {
+    //                           return FlLine(color: Colors.transparent);
+    //                         }
+    //                       },
+    //                       getDrawingVerticalLine: (value) {
+    //                         return FlLine(color: Colors.transparent);
+    //                       },
+    //                     ),
+    //                   ),
+    //                 ),
+    //                 Padding(
+    //                   padding: const EdgeInsets.only(
+    //                     left: 65,
+    //                     right: 42,
+    //                     bottom: 75,
+    //                   ),
+    //                   child: Container(
+    //                     height: double.infinity,
+    //                     width: double.infinity,
+    //                     decoration: BoxDecoration(
+    //                       gradient: LinearGradient(
+    //                         begin: Alignment.topCenter,
+    //                         end: Alignment.bottomCenter,
+    //                         colors: [
+    //                           Color.fromRGBO(239, 255, 208, 1).withOpacity(0.7),
+    //                           Color.fromRGBO(239, 255, 208, 1).withOpacity(0.7),
+    //                           Colors.transparent,
+    //                           Colors.transparent,
+    //                         ],
+    //                         stops: [0.0, 0.5, 0.5, 0.1],
+    //                       ),
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //           ),
+    //           // Vertical lines on the right
+    //           Column(
+    //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //             children: [
+    //               Container(width: 10, color: Colors.black),
+    //               Container(width: 2, color: Colors.blue),
+    //               Container(width: 2, color: Colors.green),
+    //               Container(width: 2, color: Colors.grey),
+    //             ],
+    //           ),
+    //         ],
+    //       ),
+    //     );
+    //   },
+    // );
   }
 }
 
