@@ -4,13 +4,13 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project implements a a real time graph of the Readiness to Perform summary statistic data visualization widget with touch based scrubbing, play, pause.
 
-A few resources to get you started if this is your first Flutter project:
+Currently, this code would provide a Bar Graph that shows real-time status as per the labelled spec.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+It also allows the user to scrub through the beginning and end of the data set.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+As mentioned the plan and methodology for implementing this is present in the below link:
+
+- [Plan](https://docs.google.com/document/d/1rwyMyIzpmzca8fKh-31aS7SoV0zTFt8iur6o3NxjLmo/edit?usp=sharing)
+
