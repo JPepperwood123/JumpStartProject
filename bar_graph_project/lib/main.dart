@@ -2,6 +2,10 @@ import 'package:bar_graph_project/bar_graph/individual_bar.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 
+import 'package:bar_graph_project/bar_graph/RTPBarGraph.dart';
+import 'package:bar_graph_project/bar_graph/bar_graph.dart';
+import 'dart:async';
+
 void main() {
   runApp(const MyApp());
 }
@@ -9,13 +13,13 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
+        // This is the theme of the application.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -35,9 +39,8 @@ class _DelayedRebuilder extends StatefulWidget {
 
 class _DelayedRebuilderState extends State<_DelayedRebuilder> {
   int selectedIndex = 0;
-
   List<double> rtpDataSet = [84.4, 62.7, 2.5, 42.4, 90.1];
-  List<IndividualBar> indivSumm = [IndividualBar(x: 0, y: 84.4), IndividualBar(x: 1, y: 2.5), IndividualBar(x: 2, y: 42.4)];
+  bool isPlaying = true;
 
   @override
   void initState() {
@@ -47,10 +50,17 @@ class _DelayedRebuilderState extends State<_DelayedRebuilder> {
 
   void _startTimer() {
     Future.delayed(const Duration(seconds: 10), () {
-      setState(() {
-        selectedIndex = (selectedIndex + 1) % indivSumm.length;
-      });
-      _startTimer(); // Schedule the next rebuild
+      print("this works");
+      if (isPlaying) {
+        setState(() {
+          selectedIndex = (selectedIndex + 1) % rtpDataSet.length;
+        });
+        _startTimer(); // Schedule the next rebuild
+      }
+
+      // if (selectedIndex < rtpDataSet.length) {
+      //   _startTimer();
+      // }
     });
   }
 
@@ -60,10 +70,25 @@ class _DelayedRebuilderState extends State<_DelayedRebuilder> {
       onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute(
           builder: (BuildContext context) {
+            // return HomePage(
+            //   summary: rtpDataSet,
+            //   // summary: indivSumm,
+            //   selectedIndex: selectedIndex,
+            // );
             return HomePage(
               summary: rtpDataSet,
-              // summary: indivSumm,
               selectedIndex: selectedIndex,
+              onSliderChanged: (value) {
+                setState(() {
+                  print("reached here");
+                  selectedIndex = (value * rtpDataSet.length).round() % rtpDataSet.length;
+                });
+              },
+              onPausePlay: () {
+                setState(() {
+                  isPlaying = !isPlaying;
+                });
+              },
             );
           },
         );
