@@ -89,7 +89,7 @@ class MyBarGraph extends StatelessWidget {
               child: Icon(
                 Icons.arrow_upward,
                 size: 28,
-                color: Colors.black, // Set the color as needed
+                color: Colors.black,
               ),
             ),
 
@@ -100,15 +100,6 @@ class MyBarGraph extends StatelessWidget {
                   child: 
                   BarChart(
                     BarChartData(
-                      // extraLinesData: ExtraLinesData(
-                      //   horizontalLines: [
-                      //     HorizontalLine(
-                      //       y: 85,
-                      //       color: Color.fromRGBO(239, 255, 208, 1),
-                      //       strokeWidth: 52,
-                      //     ),
-                      //   ],
-                      // ),
                       maxY: 100,
                       minY: 0,
                       titlesData: FlTitlesData(
@@ -172,7 +163,6 @@ class MyBarGraph extends StatelessWidget {
                           }
                         },
                         getDrawingVerticalLine: (value) {
-                          // Customize vertical grid lines if needed
                           return FlLine(color: Colors.transparent);
                         },
                       ),
@@ -186,7 +176,8 @@ class MyBarGraph extends StatelessWidget {
                   padding: const EdgeInsets.only(
                     left: 65, 
                     right: 42, 
-                    bottom: 75,
+                    bottom: 68,
+                    top: 30
                   ),
                   child: 
                   // Shaded area between 80 and 100
@@ -198,8 +189,6 @@ class MyBarGraph extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          // Color.fromRGBO(239, 255, 208, 1).withOpacity(0.7),
-                          // Color.fromRGBO(239, 255, 208, 1).withOpacity(0.7),
                           greenShade,
                           greenShade,
                           Colors.transparent,
@@ -216,45 +205,45 @@ class MyBarGraph extends StatelessWidget {
             // Vertical lines on the right
             Positioned(
                 right: 41,
-                top: 138,
+                top: 148,
                 bottom: 1,
                 child:
                   Container(
-                    height: 0, // Adjust the height as needed
-                    width: 6.0, // Adjust the width as needed
+                    height: 0, 
+                    width: 6.0,
                     color: Color.fromRGBO(246, 85, 64, 1),
                   ),
             ),
             Positioned(
                 right: 41,
-                top: 101,
-                bottom: 60,
+                top: 115,
+                bottom: 52,
                 child:
                   Container(
-                    height: 0, // Adjust the height as needed
-                    width: 6.0, // Adjust the width as needed
+                    height: 0,
+                    width: 6.0, 
                     color: Color.fromRGBO(255, 177, 60, 1),
                   ),
             ),
             Positioned(
                 right: 41,
-                top: 62,
-                bottom: 99,
+                top: 80,
+                bottom: 85,
                 child:
                   Container(
-                    height: 0, // Adjust the height as needed
-                    width: 6.0, // Adjust the width as needed
+                    height: 0,
+                    width: 6.0, 
                     color: Color.fromRGBO(253, 219, 0, 1), 
                   ),
             ),
             Positioned(
                 right: 41,
-                top: 1,
-                bottom: 138,
+                top: 30,
+                bottom: 120,
                 child:
                   Container(
-                    height: 0, // Adjust the height as needed
-                    width: 6.0, // Adjust the width as needed
+                    height: 0,
+                    width: 6.0,
                     color: Color.fromRGBO(153, 204, 51, 1),
                   ),
             ),
@@ -262,119 +251,6 @@ class MyBarGraph extends StatelessWidget {
         );
       }
     );
-
-    // return LayoutBuilder(
-    //   builder: (context, constraints) {
-    //     return Padding(
-    //       padding: const EdgeInsets.only(left: 20, right: 40),
-    //       child: Row(
-    //         children: [
-    //           Expanded(
-    //             child: Stack(
-    //               children: [
-    //                 BarChart(
-    //                   BarChartData(
-    //                     maxY: 100,
-    //                     minY: 0,
-    //                     titlesData: FlTitlesData(
-    //                       show: true,
-    //                       topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-    //                       bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-    //                       rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-    //                     ),
-    //                     barGroups: myBarData.barData
-    //                         .map(
-    //                           (data) => BarChartGroupData(
-    //                             x: 0,
-    //                             barRods: [
-    //                               BarChartRodData(
-    //                                 toY: data.y,
-    //                                 color: currColor,
-    //                                 width: 25,
-    //                                 borderRadius: BorderRadius.circular(19),
-    //                               ),
-    //                             ],
-    //                             showingTooltipIndicators: [0],
-    //                           ),
-    //                         )
-    //                         .toList(),
-    //                     barTouchData: BarTouchData(
-    //                       touchTooltipData: BarTouchTooltipData(
-    //                         tooltipBgColor: Colors.transparent,
-    //                         getTooltipItem: (group, groupIndex, rod, rodIndex) {
-    //                           return BarTooltipItem(
-    //                             '${summary[index]}%',
-    //                             TextStyle(
-    //                               color: currColor,
-    //                               fontSize: 21,
-    //                               fontFamily: 'Lato',
-    //                               fontWeight: FontWeight.w700,
-    //                             ),
-    //                           );
-    //                         },
-    //                       ),
-    //                     ),
-    //                     gridData: FlGridData(
-    //                       show: true,
-    //                       horizontalInterval: 20.0,
-    //                       getDrawingHorizontalLine: (value) {
-    //                         if (value == 0 || value == 100) {
-    //                           return FlLine(color: Colors.black, strokeWidth: 2.0, dashArray: [5]);
-    //                         } else if (value % 20 == 0) {
-    //                           return FlLine(
-    //                               color: Color.fromRGBO(166, 187, 199, 1), strokeWidth: 0.5, dashArray: [3]);
-    //                         } else {
-    //                           return FlLine(color: Colors.transparent);
-    //                         }
-    //                       },
-    //                       getDrawingVerticalLine: (value) {
-    //                         return FlLine(color: Colors.transparent);
-    //                       },
-    //                     ),
-    //                   ),
-    //                 ),
-    //                 Padding(
-    //                   padding: const EdgeInsets.only(
-    //                     left: 65,
-    //                     right: 42,
-    //                     bottom: 75,
-    //                   ),
-    //                   child: Container(
-    //                     height: double.infinity,
-    //                     width: double.infinity,
-    //                     decoration: BoxDecoration(
-    //                       gradient: LinearGradient(
-    //                         begin: Alignment.topCenter,
-    //                         end: Alignment.bottomCenter,
-    //                         colors: [
-    //                           Color.fromRGBO(239, 255, 208, 1).withOpacity(0.7),
-    //                           Color.fromRGBO(239, 255, 208, 1).withOpacity(0.7),
-    //                           Colors.transparent,
-    //                           Colors.transparent,
-    //                         ],
-    //                         stops: [0.0, 0.5, 0.5, 0.1],
-    //                       ),
-    //                     ),
-    //                   ),
-    //                 ),
-    //               ],
-    //             ),
-    //           ),
-    //           // Vertical lines on the right
-    //           Column(
-    //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //             children: [
-    //               Container(width: 10, color: Colors.black),
-    //               Container(width: 2, color: Colors.blue),
-    //               Container(width: 2, color: Colors.green),
-    //               Container(width: 2, color: Colors.grey),
-    //             ],
-    //           ),
-    //         ],
-    //       ),
-    //     );
-    //   },
-    // );
   }
 }
 

@@ -1,7 +1,6 @@
 import 'package:bar_graph_project/bar_graph/RTPBarGraph.dart';
 import 'package:bar_graph_project/bar_graph/bar_graph.dart';
 import 'package:bar_graph_project/bar_graph/individual_bar.dart';
-import 'package:bar_graph_project/main.dart' show _DelayedRebuilderState;
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -9,19 +8,22 @@ import 'dart:async';
 
 Input: Take predetermined list
 
-Output: DIsplay in nice bar graph
+Output: Display in nice bar graph
 
 */
 
 class HomePage extends StatelessWidget {
-  final List<double> summary; // [currentAmount]
+  final List<double> summary;
   final int selectedIndex;
+  final Function(double) onSliderChanged;
+  final VoidCallback onPausePlay;
 
-  const HomePage({
-    Key? key,
+  HomePage({
     required this.summary,
     required this.selectedIndex,
-  }) : super(key: key);
+    required this.onSliderChanged,
+    required this.onPausePlay,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class HomePage extends StatelessWidget {
                 left: 75,
                 right: 16,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
                       'RTP',
@@ -56,10 +58,8 @@ class HomePage extends StatelessWidget {
                     Row(
                       children: [
                         IconButton(
-                          icon: Icon(Icons.more_horiz_outlined),
-                          onPressed: () {
-                            // Handle the three dots icon tap
-                          },
+                          icon: Icon(Icons.help_outline),
+                          onPressed: () {},
                         ),
                       ],
                     ),
@@ -69,40 +69,56 @@ class HomePage extends StatelessWidget {
               Positioned(
                 top: 0,
                 left: 0,
-                right: 215,
-                child:IconButton(
-                  icon: Icon(Icons.help_outline),
-                  onPressed: () {
-                    // Handle the question mark icon tap
-                  },
+                right: 20,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.more_horiz_outlined),
+                      onPressed: () {
+                        // Handle the three dots icon tap
+                      },
+                    ),
+                  ],
                 ),
               ),
 
               Positioned(
-                bottom: 16,
+                top: 160,
+                bottom: 10,
+                left: 0,
+                right: 400,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.pause),
+                      onPressed: onPausePlay,
+                    )
+                  ],
+                ),
+              ),
+
+              Positioned(
+                top: 190,
+                bottom: 0,
                 left: 16,
                 right: 16,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    IconButton(
-                      icon: Icon(Icons.pause),
-                      onPressed: () {
-                        // Handle play/pause button tap
-                        // _DelayedRebuilderState()._globalKey.currenState?.togglePlayPause();
-                      },
-                    ),
                     Expanded(
                       child: Slider(
                         value: selectedIndex.toDouble(),
                         min: 0,
                         max: (summary.length - 1).toDouble(),
-                        onChanged: (value) {
-                          // Handle slider value change
-                          // _DelayedRebuilderState().onSliderChanged(value);
-                        },
+                        onChanged: onSliderChanged,
                       ),
                     ),
+                    
+                    // ElevatedButton(
+                    //   onPressed: onPausePlay,
+                    // ),
                   ],
                 ),
               ),
