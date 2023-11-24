@@ -1,6 +1,7 @@
 import 'package:bar_graph_project/bar_graph/RTPBarGraph.dart';
 import 'package:bar_graph_project/bar_graph/bar_graph.dart';
 import 'package:bar_graph_project/bar_graph/individual_bar.dart';
+import 'package:bar_graph_project/main.dart' show _DelayedRebuilderState;
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -75,7 +76,36 @@ class HomePage extends StatelessWidget {
                     // Handle the question mark icon tap
                   },
                 ),
-              )
+              ),
+
+              Positioned(
+                bottom: 16,
+                left: 16,
+                right: 16,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.pause),
+                      onPressed: () {
+                        // Handle play/pause button tap
+                        // _DelayedRebuilderState()._globalKey.currenState?.togglePlayPause();
+                      },
+                    ),
+                    Expanded(
+                      child: Slider(
+                        value: selectedIndex.toDouble(),
+                        min: 0,
+                        max: (summary.length - 1).toDouble(),
+                        onChanged: (value) {
+                          // Handle slider value change
+                          // _DelayedRebuilderState().onSliderChanged(value);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
