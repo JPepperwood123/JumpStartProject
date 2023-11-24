@@ -25,14 +25,23 @@ class MyBarGraph extends StatelessWidget {
     myBarData.initializeBarData();
 
     Color currColor;
+    Color textColor;
+    Color greenShade = Color.fromRGBO(239, 255, 208, 1).withOpacity(0.7);
+
     if (summary[index] >= 75.0) {
       currColor = Color.fromRGBO(153, 204, 51, 1);
+      textColor = Color.fromRGBO(96, 128, 32, 1);
+      greenShade = Colors.transparent;
+
     } else if (summary[index] >= 50.0) {
       currColor = Color.fromRGBO(253, 219, 0, 1);
+      textColor = Color.fromRGBO(137, 118, 0, 1);
     } else if (summary[index] >= 35.0) {
       currColor = Color.fromRGBO(255, 177, 60, 1);
+      textColor = Color.fromRGBO(163, 82, 0, 1);
     } else if (summary[index] >= 0.0) {
       currColor = Color.fromRGBO(246, 85, 64, 1);
+      textColor = Color.fromRGBO(160, 24, 5, 1);
     } else {
       throw UnimplementedError('No Value');
     }
@@ -83,24 +92,11 @@ class MyBarGraph extends StatelessWidget {
                 color: Colors.black, // Set the color as needed
               ),
             ),
-            
-            // Vertical lines on the right
-            Positioned(
-                right: 10,
-                top: 10,
-                bottom: 10,
-                child:
-                  Container(
-                    height: 2.0, // Adjust the height as needed
-                    width: 20.0, // Adjust the width as needed
-                    color: Colors.red,
-                  ),
-            ),
 
             Stack(
               children:[
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 40),
+                  padding: const EdgeInsets.only(left: 20, right: 40, top: 30, bottom: 0),
                   child: 
                   BarChart(
                     BarChartData(
@@ -151,7 +147,7 @@ class MyBarGraph extends StatelessWidget {
                             return BarTooltipItem(
                               '${summary[index]}%',
                               TextStyle(
-                                color: currColor, 
+                                color: textColor, 
                                 fontSize: 21,
                                 fontFamily: 'Lato',
                                 fontWeight: FontWeight.w700),
@@ -202,9 +198,11 @@ class MyBarGraph extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          Color.fromRGBO(239, 255, 208, 1).withOpacity(0.7),
-                          Color.fromRGBO(239, 255, 208, 1).withOpacity(0.7),
-                          Colors.transparent, // Adjust the opacity as needed
+                          // Color.fromRGBO(239, 255, 208, 1).withOpacity(0.7),
+                          // Color.fromRGBO(239, 255, 208, 1).withOpacity(0.7),
+                          greenShade,
+                          greenShade,
+                          Colors.transparent,
                           Colors.transparent,
                         ],
                        stops: [0.0, 0.5, 0.5, 0.1],
@@ -213,6 +211,52 @@ class MyBarGraph extends StatelessWidget {
                   ),
                 ),
               ]
+            ),
+
+            // Vertical lines on the right
+            Positioned(
+                right: 41,
+                top: 138,
+                bottom: 1,
+                child:
+                  Container(
+                    height: 0, // Adjust the height as needed
+                    width: 6.0, // Adjust the width as needed
+                    color: Color.fromRGBO(246, 85, 64, 1),
+                  ),
+            ),
+            Positioned(
+                right: 41,
+                top: 101,
+                bottom: 60,
+                child:
+                  Container(
+                    height: 0, // Adjust the height as needed
+                    width: 6.0, // Adjust the width as needed
+                    color: Color.fromRGBO(255, 177, 60, 1),
+                  ),
+            ),
+            Positioned(
+                right: 41,
+                top: 62,
+                bottom: 99,
+                child:
+                  Container(
+                    height: 0, // Adjust the height as needed
+                    width: 6.0, // Adjust the width as needed
+                    color: Color.fromRGBO(253, 219, 0, 1), 
+                  ),
+            ),
+            Positioned(
+                right: 41,
+                top: 1,
+                bottom: 138,
+                child:
+                  Container(
+                    height: 0, // Adjust the height as needed
+                    width: 6.0, // Adjust the width as needed
+                    color: Color.fromRGBO(153, 204, 51, 1),
+                  ),
             ),
           ],
         );
